@@ -8,7 +8,7 @@
   "engines": { "platformio": "^3.0.0" },
   "repository": {
     "type": "git",
-    "url": "https://github.com/platformio/wizio-pico.git"
+    "url": "https://github.com/Wiz-IO/wizio-pico.git"
   },
   "version": "0.0.7",
   "packageRepositories": [
