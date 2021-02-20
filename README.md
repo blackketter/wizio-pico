@@ -15,7 +15,7 @@ _Python 2 & 3 compatable in process, if issue - report_
 
 PIO Home > Platforms > Advanced Installation 
 
-paste https://github.com/Wiz-IO/platform-quectel
+paste https://github.com/Wiz-IO/wizio-pico
 
 ## INI file
 ```ini
