@@ -9,7 +9,7 @@
 * Windows, Linux, macOS
 * [Baremetal Examples](https://github.com/raspberrypi/pico-examples)
 * Arduino Examples
-* Note: _Home office, it's hard for me to test any hardware_
+* Note: _I am in Home-Office, it's hard for me to test any hardware_
 
 ![pico](https://raw.githubusercontent.com/Wiz-IO/LIB/master/pico/pio-pico.jpg)
 
