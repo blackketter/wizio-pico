@@ -9,7 +9,7 @@
 * Windows, Linux, macOS
 * [Baremetal Examples](https://github.com/Wiz-IO/wizio-pico/tree/main/examples/baremetal)
 * [Arduino Examples](https://github.com/Wiz-IO/wizio-pico/tree/main/examples/arduino)
-* [Framework code](https://github.com/Wiz-IO/framework-wizio-pico/graphs/traffic)
+* [Framework code](https://github.com/Wiz-IO/framework-wizio-pico)
 * Note: _I am in Home-Office, it's hard for me to test any hardware_
 
 ![pico](https://raw.githubusercontent.com/Wiz-IO/LIB/master/pico/pio-pico.jpg)
