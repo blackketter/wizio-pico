@@ -11,7 +11,7 @@
 * Arduino Examples
 * Note: _Home office, it's hard for me to test any hardware_
 
-## Install Platform
+## Install Platform ( NOT READY, DO NOT INSTALL )
 
 _Python 2 & 3 compatable in process, if issue - report_
 
