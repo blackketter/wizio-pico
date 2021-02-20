@@ -6,8 +6,11 @@
   "homepage": "http://www.wizio.eu/",
   "license": "Apache-2.0",
   "engines": { "platformio": "^3.0.0" },
-
-  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/platformio/wizio-pico.git"
+  },
+  "version": "0.0.6",
   "packageRepositories": [
     "https://dl.bintray.com/platformio/dl-packages/manifest.json",
     "http://dl.platformio.org/packages/manifest.json"
@@ -30,7 +33,7 @@
   "packages": {
     "framework-wizio-pico": {
         "type": "framework",
-        "version": "1.0.0"
+        "version": "0.0.6"
     },
     "toolchain-gccarmnoneeabi": {
         "type": "toolchain",
