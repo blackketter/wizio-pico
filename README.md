@@ -29,7 +29,7 @@ PlatformIO -> Home -> New
 * Open 'platformio.ini' and edit your settings
 * Connect Pico as Mass Storage Device and UPLOAD
 
-## Arduino - New Project
+## Arduino - New Project ( NOT READY )
 PlatformIO -> Home -> New
 * Enter Project Name - Board search '**WizIO-PICO**' boards - Select **Arduino**
 * Open 'platformio.ini' and edit your settings
