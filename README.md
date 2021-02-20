@@ -13,7 +13,7 @@
 
 ![pico](https://raw.githubusercontent.com/Wiz-IO/LIB/master/pico/pio-pico.jpg)
 
-## Install Platform ( NOT READY, DO NOT INSTALL )
+## Install Platform
 
 _Python 2 & 3 compatable in process, if issue - report_
 
