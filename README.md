@@ -5,9 +5,10 @@
 * This project not an official platform and is based on **pico-sdk**
 * Frameworks:
 * * Baremetal ( pico-sdk as is, USB present but is not linked ) 
-* * Arduino ( Basic - Serial, GPIO ... in progress )
+* * Arduino ( Basic - Serial, GPIO ... in progress, will upload later )
 * Windows, Linux, macOS
 * Read WIKI
+* Note: _Home office, it's hard for me to test any hardware_
 
 ## Install Platform
 
