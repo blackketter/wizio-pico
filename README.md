@@ -9,6 +9,7 @@
 * Windows, Linux, macOS
 * Read WIKI
 * [Baremetal Examples](https://github.com/raspberrypi/pico-examples)
+* Arduino Examples
 * Note: _Home office, it's hard for me to test any hardware_
 
 ## Install Platform
