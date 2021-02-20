@@ -310,6 +310,10 @@ if __name__ == "__main__":
 #   http://www.wizio.eu/
 #   https://github.com/Wiz-IO
 def upload_app(file_name, drive, addr = '0x10000000'): 
+    if drive == None: 
+        print("\n[ERROR] Please select drive in platformio.ini: upload_port = ????:/")
+        exit()
+        
     ext = "uf2"
     appstartaddr = int(addr, 0)
 
