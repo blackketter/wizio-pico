@@ -9,4 +9,3 @@ from uf2conv import upload_app
 
 def dev_init(env, platform):
     print( "NOT READY - DO NOT TEST")
-    exit()  
