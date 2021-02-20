@@ -46,6 +46,9 @@ framework = baremetal
 upload_port   = select PICO-DRIVE:/ or select HARD-DRIVE:/ to save the UF2 file ( example C:/ )
 monitor_port  = COMx
 monitor_speed = 115200
+
+heap = size
+boot = folder_name ; ( checksummed.S ) see folder framework-wizio-pico/common/boot2/
 ```
 
 
