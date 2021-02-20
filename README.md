@@ -11,6 +11,8 @@
 * Arduino Examples
 * Note: _Home office, it's hard for me to test any hardware_
 
+![pico](https://raw.githubusercontent.com/Wiz-IO/LIB/master/pico/pio-pico.jpg)
+
 ## Install Platform ( NOT READY, DO NOT INSTALL )
 
 _Python 2 & 3 compatable in process, if issue - report_
