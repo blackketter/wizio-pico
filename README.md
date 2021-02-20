@@ -21,6 +21,13 @@ PIO Home > Platforms > Advanced Installation
 
 paste https://github.com/Wiz-IO/wizio-pico
 
+## Baremetal - New Project
+PlatformIO -> Home -> New
+* Enter Project Name - Board search '**WizIO-PICO**' boards - Select **Baremetal**
+* Click BUILD and you will have basic template project
+* Open 'platformio.ini' and edit your settings
+* Connect Pico as Mass Storage Device and UPLOAD
+
 ## platformio.ini
 ```ini
 [env:pico]
