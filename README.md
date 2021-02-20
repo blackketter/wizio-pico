@@ -2,12 +2,13 @@
 
 **A few words in the beginning**
 * **Version: 0.0.7** The project is a work in progress and is very beta version - there may be bugs...
-* This project not an official platform and is based on **pico-sdk**
+* This project not an official platform and is based on [**pico-sdk**](https://github.com/raspberrypi/pico-sdk)
 * Frameworks:
-* * Baremetal ( pico-sdk as is, USB present but is not linked ) 
+* * Baremetal ( pico-sdk as is, [TinyUSB](https://github.com/raspberrypi/tinyusb/tree/e0aa405d19e35dbf58cf502b8106455c1a3c2a5c) present but is not linked ) 
 * * Arduino ( Basic - Serial, GPIO ... in progress, will upload later )
 * Windows, Linux, macOS
 * Read WIKI
+* [Baremetal Examples](https://github.com/raspberrypi/pico-examples)
 * Note: _Home office, it's hard for me to test any hardware_
 
 ## Install Platform
