@@ -51,6 +51,10 @@ heap = size ; default Baremetal 2048, Arduino 65536
 boot = folder_name ; ( checksummed.S ) see folder framework-wizio-pico/common/boot2/
 ```
 
+## TODO
+* **Arduino**
+* * Libraries ( ADC, PWM, SPI, Wire, etc )
+* * Debug printf - redirect to Serial
 
 ## Thanks to
 
