@@ -7,8 +7,8 @@
 * * Baremetal ( pico-sdk as is, [TinyUSB](https://github.com/raspberrypi/tinyusb/tree/e0aa405d19e35dbf58cf502b8106455c1a3c2a5c) present but is not linked ) 
 * * Arduino ( Basic - Serial, GPIO ... in progress, will upload later )
 * Windows, Linux, macOS
-* [Baremetal Examples](https://github.com/raspberrypi/pico-examples)
-* Arduino Examples
+* [Baremetal Examples](https://github.com/Wiz-IO/wizio-pico/tree/main/examples/baremetal)
+* [Arduino Examples](https://github.com/Wiz-IO/wizio-pico/tree/main/examples/arduino)
 * [Framework code](https://github.com/Wiz-IO/framework-wizio-pico/graphs/traffic)
 * Note: _I am in Home-Office, it's hard for me to test any hardware_
 
