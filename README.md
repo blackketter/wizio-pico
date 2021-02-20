@@ -25,6 +25,7 @@ paste https://github.com/Wiz-IO/wizio-pico
 PlatformIO -> Home -> New
 * Enter Project Name - Board search '**WizIO-PICO**' boards - Select **Baremetal**
 * Click BUILD and you will have basic template project
+* For CPP project, rename main.c to main.cpp ( if you delete main file, the builder will create new main.c as template )
 * Open 'platformio.ini' and edit your settings
 * Connect Pico as Mass Storage Device and UPLOAD
 
