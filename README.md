@@ -7,7 +7,6 @@
 * * Baremetal ( pico-sdk as is, [TinyUSB](https://github.com/raspberrypi/tinyusb/tree/e0aa405d19e35dbf58cf502b8106455c1a3c2a5c) present but is not linked ) 
 * * Arduino ( Basic - Serial, GPIO ... in progress, will upload later )
 * Windows, Linux, macOS
-* Read WIKI
 * [Baremetal Examples](https://github.com/raspberrypi/pico-examples)
 * Arduino Examples
 * Note: _Home office, it's hard for me to test any hardware_
@@ -20,12 +19,13 @@ PIO Home > Platforms > Advanced Installation
 
 paste https://github.com/Wiz-IO/wizio-pico
 
-## INI file
+## platformio.ini
 ```ini
 [env:pico]
 platform = wizio-pico
 board = pico
 framework = baremetal
+
 upload_port   = select PICO-DRIVE:/ or select HARD-DRIVE:/ to save the UF2 file ( example C:/ )
 monitor_port  = COMx
 monitor_speed = 115200
