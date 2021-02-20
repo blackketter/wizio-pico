@@ -11,7 +11,7 @@
     "type": "git",
     "url": "https://github.com/Wiz-IO/wizio-pico.git"
   },
-  "version": "0.0.7",
+  "version": "1.0.0",
   "packageRepositories": [
     "http://dl.platformio.org/packages/manifest.json"
   ],
