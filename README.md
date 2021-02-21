@@ -6,7 +6,7 @@
 * Frameworks:
 * * Baremetal ( pico-sdk as is, [TinyUSB](https://github.com/raspberrypi/tinyusb/tree/e0aa405d19e35dbf58cf502b8106455c1a3c2a5c) present but is not linked ) 
 * * Arduino ( basic ... in progress )
-* Systems
+* **Systems**
 * * windows, windows_x8, windows_amd64
 * * linux_x86_64, linux_armv6l, linux_armv7l, linux_armv8l
 * * darwin_x86_64, darwin_i386
