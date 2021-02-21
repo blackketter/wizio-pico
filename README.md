@@ -55,6 +55,7 @@ monitor_speed = 115200
 * **Arduino**
 * * Libraries ( ADC, PWM, SPI, Wire, etc )
 * * Debug printf - redirect to Serial
+* **GCC for Raspberry Pi**
 
 ## Thanks to
 
