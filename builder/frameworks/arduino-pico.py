@@ -54,7 +54,7 @@ def dev_init(env, platform):
         ASFLAGS=[ env.cortex, "-x", "assembler-with-cpp" ],        
         CPPDEFINES = [                         
             platform.upper()+"=200",
-            "PICO_STDIO_UART", 
+            #"PICO_STDIO_UART", 
             "PICO_ON_DEVICE=1",
             "PICO_HEAP_SIZE="+heap,
         ],        
@@ -212,14 +212,12 @@ def dev_init(env, platform):
     libs.append( env.BuildLibrary( 
         join("$BUILD_DIR", '_' + platform, "rp2_common"),        
         join(framework_dir, "pico-sdk", "src", "rp2_common"),
-        src_filter="+<*> -<boot_stage2> -<pico_standard_link/crt0.S> -<pico_standard_link/new_delete.cpp>"
+        src_filter="+<*> -<boot_stage2> -<pico_standard_link> -<pico_malloc> -<pico_printf> -<pico_stdio> -<pico_stdio_uart> -<pico_stdio_usb> -<pico_stdio_semihosting>"
     )) 
 # PROJECT    
     libs.append( env.BuildLibrary( join("$BUILD_DIR", "_custom"), join("$PROJECT_DIR", "lib") ) )   
 # BOOT2 todo: select other
     libs.append( env.BuildLibrary( join("$BUILD_DIR", '_' + platform, "boot2"), join(framework_dir, "common", "boot2", boot) ) )
-# Missing
-    libs.append( env.BuildLibrary( join("$BUILD_DIR", '_' + platform, "std"), join(framework_dir, "common", "sdk") ) )  
 # USB TODO
         
     env.Append(LIBS = libs)   
