@@ -7,15 +7,9 @@
 * * Baremetal ( pico-sdk as is, [TinyUSB](https://github.com/raspberrypi/tinyusb/tree/e0aa405d19e35dbf58cf502b8106455c1a3c2a5c) present but is not linked ) 
 * * Arduino ( basic ... in progress )
 * Systems
-* * windows
-* * windows_x86
-* * windows_amd64
-* * linux_x86_64
-* * linux_armv6l
-* * linux_armv7l
-* * linux_armv8l
-* * darwin_x86_64
-* * darwin_i386
+* * windows, windows_x8, windows_amd64
+* * linux_x86_64, linux_armv6l, linux_armv7l, linux_armv8l
+* * darwin_x86_64, darwin_i386
 * [Baremetal Examples](https://github.com/Wiz-IO/wizio-pico/tree/main/examples/baremetal)
 * [Arduino Examples](https://github.com/Wiz-IO/wizio-pico/tree/main/examples/arduino)
 * [Framework code](https://github.com/Wiz-IO/framework-wizio-pico)
