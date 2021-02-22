@@ -134,7 +134,7 @@ CoreMark 1.0 : 146.58 / GCC7.2.1 20170904 (release) [ARM/embedded-7-branch revis
 */
 
 /*
-CoreMark Performance Benchmark - 250 Mhz
+CoreMark Performance Benchmark - 150 Mhz
 CoreMark measures how quickly your processor can manage linked lists, compute matrix multiply, and execute state machine code.
 Iterations/Sec is the main benchmark result, higher numbers are better
 Running.... (usually requires 12 to 20 seconds)
