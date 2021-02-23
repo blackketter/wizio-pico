@@ -55,7 +55,7 @@ monitor_speed = 115200
 ## TODO
 * **USB**
 * **Arduino**
-* * Libraries ( ADC, PWM, SPI, Wire, etc )
+* * Libraries...
 
 
 ## Thanks to
