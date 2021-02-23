@@ -51,7 +51,8 @@ def dev_init(env, platform):
     else: 
         nano = []
 
-    boot = env.BoardConfig().get("build.boot", "w25q080") # selecting boot
+    boot = env.BoardConfig().get("build.boot", "w25q080") # select boot
+    linker = env.BoardConfig().get("build.linker", "memmap_default.ld") # select linker srcipt
 
     tinyusb_dir = join(framework_dir, "pico-sdk", "lib", "tinyusb", "src")
 
@@ -61,7 +62,7 @@ def dev_init(env, platform):
             platform.upper(), 
             "PICO_STDIO_UART",
             "PICO_ON_DEVICE=1",
-            "PICO_HEAP_SIZE="+heap,
+            "PICO_HEAP_SIZE=" + heap,
         ],        
         CPPPATH = [    
             join(framework_dir, "common"),        
@@ -187,7 +188,7 @@ def dev_init(env, platform):
             nano                      
         ],
         LIBSOURCE_DIRS=[ join(framework_dir, "library") ],
-        LDSCRIPT_PATH = join(framework_dir, "pico-sdk", "src", "rp2_common", "pico_standard_link", "memmap_default.ld"),
+        LDSCRIPT_PATH = join(framework_dir, "pico-sdk", "src", "rp2_common", "pico_standard_link", linker),
         LIBS = [],                
         BUILDERS = dict(
             ElfToBin = Builder(
@@ -213,7 +214,10 @@ def dev_init(env, platform):
     libs.append( env.BuildLibrary( 
         join("$BUILD_DIR", '_' + platform, "rp2_common"),        
         join(framework_dir, "pico-sdk", "src", "rp2_common"),
-        src_filter="+<*> -<boot_stage2> -<pico_standard_link/crt0.S>"
+        src_filter=[ "+<*>", 
+            "-<boot_stage2>", 
+            "-<pico_standard_link/crt0.S>"
+        ]
     )) 
 # PROJECT    
     libs.append( env.BuildLibrary( join("$BUILD_DIR", "_custom"), join("$PROJECT_DIR", "lib") ) )  
