@@ -45,7 +45,7 @@ platform = wizio-pico
 board = pico
 framework = baremetal
 
-upload_port   = select PICO-DRIVE:/ or select HARD-DRIVE:/ to save the UF2 file ( example C:/ )
+upload_port   = select PICO-DRIVE:/ or select HARD-DRIVE:/folder/ to save the UF2 file ( example C:/UF2/ )
 monitor_port  = COM1
 monitor_speed = 115200
 
