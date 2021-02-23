@@ -54,7 +54,8 @@ def dev_init(env, platform):
         ASFLAGS=[ env.cortex, "-x", "assembler-with-cpp" ],        
         CPPDEFINES = [                         
             platform.upper()+"=200",
-            #"PICO_STDIO_UART", 
+            #"PICO_FLOAT_SUPPORT_ROM_V1",   # TODO: enable
+            #"PICO_DOUBLE_SUPPORT_ROM_V1",  # TODO: enable           
             "PICO_ON_DEVICE=1",
             "PICO_HEAP_SIZE="+heap,
         ],        
@@ -64,7 +65,6 @@ def dev_init(env, platform):
             join(framework_dir, platform, "variants", variant), 
 
             join(framework_dir, "common"),        
-            join(framework_dir, "pico-sdk", "src", "boards", "include"), 
             join(framework_dir, "pico-sdk", "src", "rp2040", "hardware_regs", "include"),  
             join(framework_dir, "pico-sdk", "src", "rp2040", "hardware_structs", "include"),
 
@@ -212,7 +212,16 @@ def dev_init(env, platform):
     libs.append( env.BuildLibrary( 
         join("$BUILD_DIR", '_' + platform, "rp2_common"),        
         join(framework_dir, "pico-sdk", "src", "rp2_common"),
-        src_filter="+<*> -<boot_stage2> -<pico_standard_link> -<pico_malloc> -<pico_printf> -<pico_stdio> -<pico_stdio_uart> -<pico_stdio_usb> -<pico_stdio_semihosting>"
+        src_filter=[ "+<*>", "-<boot_stage2>", "-<pico_standard_link>",
+            "-<pico_malloc",
+            "-<pico_printf>",
+            "-<pico_stdio>",
+            "-<pico_stdio_uart>",
+            "-<pico_stdio_usb>",
+            "-<pico_stdio_semihosting>",
+            "-<pico_float>",    # TODO: enable
+            "-<pico_double>",   # TODO: enable
+        ]
     )) 
 # PROJECT    
     libs.append( env.BuildLibrary( join("$BUILD_DIR", "_custom"), join("$PROJECT_DIR", "lib") ) )   
