@@ -49,8 +49,12 @@ upload_port   = select PICO-DRIVE:/ or select HARD-DRIVE:/ to save the UF2 file 
 monitor_port  = COM1
 monitor_speed = 115200
 
-;heap = size ; default Baremetal 2048, Arduino 65536
-;boot = folder_name ; ( checksummed.S ) see folder framework-wizio-pico/common/boot2/
+;heap = size        ; default Baremetal 2048, Arduino 65536
+;boot = folder_name ; for boot2.S see folder framework-wizio-pico/common/boot2/
+
+;ONLY BAREMETAL
+;linker = script_name.ld   ; default is memmap_default.ld see framework-wizio-pico/pico-sdk/src/rp2_common/pico_standard_link/
+
 ```
 
 ## TODO
