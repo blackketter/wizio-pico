@@ -7,7 +7,7 @@ int duty = 0, direction = 1;
 
 void setup()
 {
-  Serial.begin(115200, true);
+  Serial.begin(115200, true); // true - retarget prinf() to Serial
   Serial.println("\nArdiuno Raspberrypi PI Pico 2021 Georgi Angelov");
   //PWM.setFreq(2000); // other freq
 }
