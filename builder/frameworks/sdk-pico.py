@@ -9,7 +9,10 @@ from SCons.Script import DefaultEnvironment, Builder
 from uf2conv import upload_app
 
 def dev_uploader(target, source, env):
-    return upload_app(join(env.get("BUILD_DIR"), env.get("PROGNAME")) + '.bin', env.get("UPLOAD_PORT"))
+    drive = env.get("UPLOAD_PORT")
+    if None == drive:
+        drive = env.get("BUILD_DIR") + '/'
+    return upload_app(join(env.get("BUILD_DIR"), env.get("PROGNAME")) + '.bin', drive, env.address)
 
 def dev_create_template(env):
     D = join(env.subst("$PROJECT_DIR"), "src")
@@ -34,7 +37,7 @@ def dev_compiler(env):
         SIZECHECKCMD="$SIZETOOL -A -d $SOURCES",
         SIZEPRINTCMD='$SIZETOOL --mcu=$BOARD_MCU -C -d $SOURCES',
         PROGSUFFIX=".elf", 
-        PROGNAME = "ROM" 
+        PROGNAME = "BAREMETAL" 
     )
     env.cortex = ["-mcpu=cortex-m0plus", "-mthumb"]
 
@@ -43,7 +46,13 @@ def dev_init(env, platform):
     dev_create_template(env)
     dev_compiler(env)
     framework_dir = env.PioPlatform().get_package_dir("framework-wizio-pico")
-    heap = env.BoardConfig().get("build.heap", "2048") # default heap size in platform_defs.h
+    tinyusb_dir = join(framework_dir, "pico-sdk", "lib", "tinyusb")    
+
+    use_usb = env.BoardConfig().get("build.use_usb", "0")       # compile tiniusb
+    heap = env.BoardConfig().get("build.heap", "2048")          # default heap size in platform_defs.h
+    boot = env.BoardConfig().get("build.boot", "w25q080")       # get boot
+    linker = env.BoardConfig().get("build.linker", "-")         # get linker srcipt
+    env.address = env.BoardConfig().get("build.address", "-")   # get appstartaddr
 
     disable_nano = env.BoardConfig().get("build.disable_nano", "by defaut nano is enabled") 
     if disable_nano == "true":
@@ -51,10 +60,7 @@ def dev_init(env, platform):
     else: 
         nano = []
 
-    boot = env.BoardConfig().get("build.boot", "w25q080") # select boot
-    linker = env.BoardConfig().get("build.linker", "memmap_default.ld") # select linker srcipt
-
-    tinyusb_dir = join(framework_dir, "pico-sdk", "lib", "tinyusb", "src")
+    print('  HEAP SIZE:', heap)
 
     env.Append(
         ASFLAGS=[ env.cortex, "-x", "assembler-with-cpp" ],        
@@ -63,6 +69,7 @@ def dev_init(env, platform):
             "PICO_STDIO_UART",
             "PICO_ON_DEVICE=1",
             "PICO_HEAP_SIZE=" + heap,
+            "CFG_TUSB_MCU=OPT_MCU_RP2040"
         ],        
         CPPPATH = [    
             join(framework_dir, "common"),        
@@ -102,8 +109,7 @@ def dev_init(env, platform):
             join(framework_dir, "pico-sdk", "src", "rp2_common", "pico_stdio_usb", "include"),
             join(framework_dir, "pico-sdk", "src", "rp2_common", "pico_stdlib", "include"),
             join(framework_dir, "pico-sdk", "src", "rp2_common", "pico_unique_id", "include"),
-            join(framework_dir, "pico-sdk", "src", "rp2_common", "pico_fix", "rp2040_usb_device_enumeration","include"),
-            join(framework_dir, "pico-sdk", "src", "rp2_common", "tinyusb"),
+            join(framework_dir, "pico-sdk", "src", "rp2_common", "pico_fix", "rp2040_usb_device_enumeration", "include"),
 
             join(framework_dir, "pico-sdk", "src", "rp2_common", "hardware_adc", "include"),
             join(framework_dir, "pico-sdk", "src", "rp2_common", "hardware_base", "include"),
@@ -129,8 +135,8 @@ def dev_init(env, platform):
             join(framework_dir, "pico-sdk", "src", "rp2_common", "hardware_watchdog", "include"),
             join(framework_dir, "pico-sdk", "src", "rp2_common", "hardware_xosc", "include"),
 
-            join(tinyusb_dir),
-            join(tinyusb_dir, "common"),
+            join(framework_dir, "pico-sdk", "src", "rp2_common", "tinyusb"),
+            join(tinyusb_dir, "src"),
             join(tinyusb_dir, "hw"),
         ],        
         CFLAGS = [
@@ -188,7 +194,6 @@ def dev_init(env, platform):
             nano                      
         ],
         LIBSOURCE_DIRS=[ join(framework_dir, "library") ],
-        LDSCRIPT_PATH = join(framework_dir, "pico-sdk", "src", "rp2_common", "pico_standard_link", linker),
         LIBS = [],                
         BUILDERS = dict(
             ElfToBin = Builder(
@@ -224,11 +229,38 @@ def dev_init(env, platform):
 # BOOT2
     libs.append( env.BuildLibrary( join("$BUILD_DIR", '_' + platform, "boot2"), join(framework_dir, "common", "boot2", boot) ) )
 # Missing
-    libs.append( env.BuildLibrary( join("$BUILD_DIR", '_' + platform, "std"), join(framework_dir, "common", "sdk") ) )  
+    libs.append( env.BuildLibrary( join("$BUILD_DIR", '_' + platform, "std"), join(framework_dir, "common", "pico") ) )  
 # USB TODO
-    if False:
-        libs.append( env.BuildLibrary( join("$BUILD_DIR", '_' + platform, "tinyusb_raspberrypi"),   join(tinyusb_dir, "portable", "raspberrypi") ))
-        libs.append( env.BuildLibrary( join("$BUILD_DIR", '_' + platform, "tinyusb_device"),        join(tinyusb_dir, "portable", "device") ))    
-        libs.append(  env.BuildLibrary( join("$BUILD_DIR", '_' + platform, "tinyusb_class"),        join(tinyusb_dir, "portable", "class") ))      
+    if '0' != use_usb:
+        print('  TINYUSB: in use')
+        libs.append( env.BuildLibrary( join("$BUILD_DIR", '_' + platform, "tinyusb"), join(tinyusb_dir) ))
 
-    env.Append(LIBS = libs)   
+    env.Append(LIBS = libs)  
+
+    bynary_type = env.BoardConfig().get("build.bynary_type", 'default')
+    print('  BINARY TYPE:', bynary_type)
+    if 'copy_to_ram' == bynary_type:
+        if '-' == env.address: env.address = '0x10000000'               
+        if '-' == linker: linker = 'memmap_copy_to_ram.ld'          
+        env.Append(
+            LDSCRIPT_PATH = join(framework_dir, "pico-sdk", "src", "rp2_common", "pico_standard_link", linker),
+            CPPDEFINES = ['PICO_COPY_TO_RAM']
+        )  
+    elif 'no_flash' == bynary_type:
+        if '-' == env.address: env.address = '0x20000000'               
+        if '-' == linker: linker = 'memmap_no_flash.ld'          
+        env.Append(
+            LDSCRIPT_PATH = join(framework_dir, "pico-sdk", "src", "rp2_common", "pico_standard_link", linker),
+            CPPDEFINES = ['PICO_NO_FLASH']
+        )          
+        pass
+    #elif 'blocked_ram' == bynary_type: # ?????????   
+    else: #default  
+        if '-' == env.address: env.address = '0x10000000'               
+        if '-' == linker: linker = 'memmap_default.ld'        
+        env.Append(
+            LDSCRIPT_PATH = join(framework_dir, "pico-sdk", "src", "rp2_common", "pico_standard_link", linker),
+        )        
+    print('  LINKER:', linker)
+    print('  ADDRESS:', env.address)
+    print('  BOOT:', boot)
