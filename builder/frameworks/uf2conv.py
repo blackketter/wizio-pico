@@ -42,7 +42,7 @@ families = {
 
 INFO_FILE = "/INFO_UF2.TXT"
 
-appstartaddr    = 0x10000000 # pico
+appstartaddr    = 0x10000000 # pico flash
 familyid        = 0xe48bff56 # pico
 
 
@@ -313,17 +313,20 @@ def upload_app(file_name, drive, addr = '0x10000000'):
     if drive == None: 
         print("\n[ERROR] Please select drive in platformio.ini: upload_port = ????:/")
         exit()
-        
+
     ext = "uf2"
+    global appstartaddr
     appstartaddr = int(addr, 0)
 
-    with open(file_name, mode='rb') as f: inpbuf = f.read()  
-    outbuf = convert_to_uf2(inpbuf)  
+    with open(file_name, mode='rb') as f: inpbuf = f.read() 
+
     print("  Converting to UF2") 
-    print("  Start address 0x%x" % (appstartaddr) )    
-    print("  Output size   %d bytes" % (len(outbuf)) )    
+    print("  Start address: 0x%x" % (appstartaddr) )    
+    outbuf = convert_to_uf2(inpbuf)  
+    print("  Output size: %d bytes" % (len(outbuf)) ) 
 
     file_name = file_name.replace(".bin", ".uf2")
+
     if drive != '':
         file_name = os.path.basename(file_name)
         write_file(drive + file_name, outbuf)
