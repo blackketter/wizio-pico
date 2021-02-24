@@ -11,9 +11,9 @@
 * * windows, windows_x8, windows_amd64
 * * linux_x86_64, linux_armv6l, linux_armv7l, linux_armv8l
 * * darwin_x86_64, darwin_i386
+* [Framework code](https://github.com/Wiz-IO/framework-wizio-pico)
 * [Baremetal Examples](https://github.com/Wiz-IO/wizio-pico/tree/main/examples/baremetal)
 * [Arduino Examples](https://github.com/Wiz-IO/wizio-pico/tree/main/examples/arduino)
-* [Framework code](https://github.com/Wiz-IO/framework-wizio-pico)
 * _Note: I am in Home-Office, it's hard for me to test any hardware_
 
 ![pico](https://raw.githubusercontent.com/Wiz-IO/LIB/master/pico/pio-pico.jpg)
@@ -47,15 +47,13 @@ PlatformIO -> Home -> New
 * Connect Pico as Mass Storage Device
 * Open 'platformio.ini' and edit your settings
 * BUILD / UPLOAD
-* * [READ WIKI - ARDUINO](https://github.com/Wiz-IO/wizio-pico/wiki/ARDUINO)
+* [READ WIKI - ARDUINO](https://github.com/Wiz-IO/wizio-pico/wiki/ARDUINO)
 
 
 ## TODO
 * **TinyUSB is not tested**
 * **Arduino**
-* * Libraries...
-* * TinyUSB
-
+* * Libraries ... etc
 
 ## Thanks to
 
