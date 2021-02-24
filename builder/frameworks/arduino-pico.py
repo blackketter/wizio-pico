@@ -8,7 +8,10 @@ from SCons.Script import DefaultEnvironment, Builder
 from uf2conv import upload_app
 
 def dev_uploader(target, source, env):
-    return upload_app(join(env.get("BUILD_DIR"), env.get("PROGNAME")) + '.bin', env.get("UPLOAD_PORT"))
+    drive = env.get("UPLOAD_PORT")
+    if None == drive:
+        drive = env.get("BUILD_DIR") + '/'
+    return upload_app(join(env.get("BUILD_DIR"), env.get("PROGNAME")) + '.bin', drive)
                
 def dev_compiler(env):
     env.Replace(
@@ -27,7 +30,7 @@ def dev_compiler(env):
         SIZECHECKCMD="$SIZETOOL -A -d $SOURCES",
         SIZEPRINTCMD='$SIZETOOL --mcu=$BOARD_MCU -C -d $SOURCES',
         PROGSUFFIX=".elf", 
-        PROGNAME = "ROM" 
+        PROGNAME = "ARDUINO" 
     )
     env.cortex = ["-mcpu=cortex-m0plus", "-mthumb"] # float?
 
