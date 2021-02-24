@@ -38,10 +38,12 @@ def dev_init(env, platform):
     print( "RASPBERRYPI PI PICO RP2040 ARDUINO")    
     dev_compiler(env)
     framework_dir = env.PioPlatform().get_package_dir("framework-wizio-pico")
+    tinyusb_dir   = join(framework_dir, "pico-sdk", "lib", "tinyusb") 
+    use_usb       = env.BoardConfig().get("build.use_usb", "0")     # compile tiniusb
     core          = env.BoardConfig().get("build.core")  
     variant       = env.BoardConfig().get("build.variant")  
-    heap          = env.BoardConfig().get("build.heap", "65536") # default heap size 
-    print("Heap Size:", heap)      
+    heap          = env.BoardConfig().get("build.heap", "65536")    # default heap size 
+    boot          = env.BoardConfig().get("build.boot", "w25q080")  # get boot     
 
     disable_nano = env.BoardConfig().get("build.disable_nano", "by defaut nano is enabled")
     if disable_nano == "true":
@@ -49,9 +51,7 @@ def dev_init(env, platform):
     else: 
         nano = []
 
-    boot = env.BoardConfig().get("build.boot", "w25q080") # selecting boot
-
-    tinyusb_dir = join(framework_dir, "pico-sdk", "lib", "tinyusb", "src")
+    print('  HEAP SIZE:', heap)
 
     env.Append(
         ASFLAGS=[ env.cortex, "-x", "assembler-with-cpp" ],        
@@ -61,6 +61,7 @@ def dev_init(env, platform):
             #"PICO_DOUBLE_SUPPORT_ROM_V1",  # TODO: enable           
             "PICO_ON_DEVICE=1",
             "PICO_HEAP_SIZE="+heap,
+            "CFG_TUSB_MCU=OPT_MCU_RP2040"
         ],        
         CPPPATH = [            
             join(framework_dir, platform, platform),
@@ -104,7 +105,7 @@ def dev_init(env, platform):
             join(framework_dir, "pico-sdk", "src", "rp2_common", "pico_stdlib", "include"),
             join(framework_dir, "pico-sdk", "src", "rp2_common", "pico_unique_id", "include"),
             join(framework_dir, "pico-sdk", "src", "rp2_common", "pico_fix", "rp2040_usb_device_enumeration","include"),
-            join(framework_dir, "pico-sdk", "src", "rp2_common", "tinyusb"),
+
             join(framework_dir, "pico-sdk", "src", "rp2_common", "hardware_adc", "include"),
             join(framework_dir, "pico-sdk", "src", "rp2_common", "hardware_base", "include"),
             join(framework_dir, "pico-sdk", "src", "rp2_common", "hardware_claim", "include"),
@@ -129,9 +130,9 @@ def dev_init(env, platform):
             join(framework_dir, "pico-sdk", "src", "rp2_common", "hardware_watchdog", "include"),
             join(framework_dir, "pico-sdk", "src", "rp2_common", "hardware_xosc", "include"),
 
-            join(tinyusb_dir),
-            join(tinyusb_dir, "common"),
-            join(tinyusb_dir, "hw"),      
+            join(framework_dir, "pico-sdk", "src", "rp2_common", "tinyusb"),
+            join(tinyusb_dir, "src"),
+            join(tinyusb_dir, "hw"),
         ],        
         CFLAGS = [
             env.cortex,
@@ -215,7 +216,9 @@ def dev_init(env, platform):
     libs.append( env.BuildLibrary( 
         join("$BUILD_DIR", '_' + platform, "rp2_common"),        
         join(framework_dir, "pico-sdk", "src", "rp2_common"),
-        src_filter=[ "+<*>", "-<boot_stage2>", "-<pico_standard_link>",
+        src_filter=[ "+<*>", 
+            "-<boot_stage2>", 
+            "-<pico_standard_link>",
             "-<pico_malloc",
             "-<pico_printf>",
             "-<pico_stdio>",
@@ -230,6 +233,13 @@ def dev_init(env, platform):
     libs.append( env.BuildLibrary( join("$BUILD_DIR", "_custom"), join("$PROJECT_DIR", "lib") ) )   
 # BOOT2 todo: select other
     libs.append( env.BuildLibrary( join("$BUILD_DIR", '_' + platform, "boot2"), join(framework_dir, "common", "boot2", boot) ) )
-# USB TODO
+# USB
+    if '0' != use_usb:
+        print('  TINYUSB: in use')
+        libs.append( env.BuildLibrary( join("$BUILD_DIR", '_' + platform, "tinyusb"), join(tinyusb_dir) ))
         
     env.Append(LIBS = libs)   
+
+    print('  LINKER:', 'memmap_default.ld') # ?
+    print('  ADDRESS:', '0x10000000')       # ?
+    print('  BOOT:', boot)    
