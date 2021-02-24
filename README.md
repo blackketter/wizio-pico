@@ -42,23 +42,12 @@ PlatformIO -> Home -> New
 * Open 'platformio.ini' and edit your settings
 * BUILD / UPLOAD
 
-## platformio.ini
-```ini
-[env:pico]
-platform = wizio-pico
-board = pico
-framework = baremetal
-
-upload_port   = PicoDrive:/
-monitor_port  = COM1
-monitor_speed = 115200
-
-```
 
 ## TODO
-* **USB**
+* **TinyUSB is not tested**
 * **Arduino**
 * * Libraries...
+* * TinyUSB
 
 
 ## Thanks to
