@@ -230,7 +230,7 @@ def dev_init(env, platform):
     libs.append( env.BuildLibrary( join("$BUILD_DIR", '_' + platform, "boot2"), join(framework_dir, "common", "boot2", boot) ) )
 # Missing
     libs.append( env.BuildLibrary( join("$BUILD_DIR", '_' + platform, "std"), join(framework_dir, "common", "pico") ) )  
-# USB TODO
+# USB
     if '0' != use_usb:
         print('  TINYUSB: in use')
         libs.append( env.BuildLibrary( join("$BUILD_DIR", '_' + platform, "tinyusb"), join(tinyusb_dir) ))
