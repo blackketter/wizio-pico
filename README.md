@@ -6,6 +6,7 @@
 * Frameworks:
 * * Baremetal ( pico-sdk as is, [TinyUSB](https://github.com/raspberrypi/tinyusb/tree/e0aa405d19e35dbf58cf502b8106455c1a3c2a5c) present but is not linked ) 
 * * Arduino ( basic ... in progress )
+* [**READ WIKI**](https://github.com/Wiz-IO/wizio-pico/wiki/)
 * **Systems**
 * * windows, windows_x8, windows_amd64
 * * linux_x86_64, linux_armv6l, linux_armv7l, linux_armv8l
@@ -31,6 +32,7 @@ PlatformIO -> Home -> New
 * For CPP project, rename main.c to main.cpp ( if you delete main file, builder will create new main.c as template )
 * Open 'platformio.ini' and edit your settings
 * Connect Pico as Mass Storage Device and UPLOAD
+* [READ WIKI](https://github.com/Wiz-IO/wizio-pico/wiki/BAREMETAL)
 
 ## Arduino - New Project
 PlatformIO -> Home -> New
@@ -45,15 +47,9 @@ platform = wizio-pico
 board = pico
 framework = baremetal
 
-upload_port   = select PICO-DRIVE:/ or select HARD-DRIVE:/folder/ to save the UF2 file ( example C:/UF2/ )
+upload_port   = PicoDrive:/
 monitor_port  = COM1
 monitor_speed = 115200
-
-;heap = size        ; default Baremetal 2048, Arduino 65536
-;boot = folder_name ; for boot2.S see folder framework-wizio-pico/common/boot2/
-
-;ONLY BAREMETAL
-;linker = script_name.ld   ; default is memmap_default.ld see framework-wizio-pico/pico-sdk/src/rp2_common/pico_standard_link/
 
 ```
 
