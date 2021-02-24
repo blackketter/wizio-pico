@@ -4,7 +4,7 @@
 * **Version: 1.0.0** The project is a work in progress and is **very beta version** - there may be bugs...
 * This project not an official platform and is based on [**pico-sdk**](https://github.com/raspberrypi/pico-sdk)
 * Frameworks:
-* * Baremetal ( pico-sdk as is, [TinyUSB](https://github.com/raspberrypi/tinyusb/tree/e0aa405d19e35dbf58cf502b8106455c1a3c2a5c) present but is not linked ) 
+* * Baremetal ( pico-sdk as is, [TinyUSB](https://github.com/raspberrypi/tinyusb/tree/e0aa405d19e35dbf58cf502b8106455c1a3c2a5c) present but is not tested ) 
 * * Arduino ( basic ... in progress )
 * [**READ WIKI**](https://github.com/Wiz-IO/wizio-pico/wiki/)
 * **Systems**
