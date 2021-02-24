@@ -25,6 +25,12 @@ PIO Home > Platforms > Advanced Installation
 
 paste https://github.com/Wiz-IO/wizio-pico
 
+## Fast Uninstal
+* goto C:\Users\USER_NAME.platformio\platforms 
+* delete folder **wizio-pico** ( builders )
+* delete folder **framework-wizio-pico** ( sources )
+* delete folder toolchain-gccarmnoneeabi (compiler, _may not delete_ )
+
 ## Baremetal - New Project
 PlatformIO -> Home -> New
 * Enter Project Name - Board search '**WizIO-PICO**' boards - Select **Baremetal**
@@ -33,7 +39,7 @@ PlatformIO -> Home -> New
 * Connect Pico as Mass Storage Device
 * Open 'platformio.ini' and edit your settings
 * BUILD / UPLOAD
-* [READ WIKI](https://github.com/Wiz-IO/wizio-pico/wiki/BAREMETAL)
+* [READ WIKI - BAREMETAL](https://github.com/Wiz-IO/wizio-pico/wiki/BAREMETAL)
 
 ## Arduino - New Project
 PlatformIO -> Home -> New
@@ -41,6 +47,7 @@ PlatformIO -> Home -> New
 * Connect Pico as Mass Storage Device
 * Open 'platformio.ini' and edit your settings
 * BUILD / UPLOAD
+* * [READ WIKI - ARDUINO](https://github.com/Wiz-IO/wizio-pico/wiki/ARDUINO)
 
 
 ## TODO
