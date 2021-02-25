@@ -30,7 +30,7 @@ paste https://github.com/Wiz-IO/wizio-pico
 * goto C:\Users\USER_NAME.platformio\platforms 
 * delete folder **wizio-pico** ( builders )
 * delete folder **framework-wizio-pico** ( sources )
-* delete folder toolchain-gccarmnoneeabi (compiler, **may not delete** )
+* delete folder toolchain-gccarmnoneeabi (compiler, **may not be deleted** )
 
 ## Baremetal - New Project
 PlatformIO -> Home -> New
