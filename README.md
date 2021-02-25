@@ -51,7 +51,6 @@ PlatformIO -> Home -> New
 
 
 ## TODO
-* **TinyUSB is not tested**
 * **Arduino**
 * * Libraries ... etc
 * **PIOASM**
