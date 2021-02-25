@@ -1,6 +1,7 @@
 # Raspberry Pi Pico development platform for PlatformIO
 
 **A few words in the beginning**
+* **Before experimental please reinstall the platform**
 * **Version: 1.0.0** The project is a work in progress and is **very beta version** - there may be bugs...
 * This project not an official platform and is based on [**pico-sdk**](https://github.com/raspberrypi/pico-sdk)
 * Frameworks:
@@ -25,11 +26,11 @@ PIO Home > Platforms > Advanced Installation
 
 paste https://github.com/Wiz-IO/wizio-pico
 
-## Fast Uninstal
+## Fast Uninstal ... Reinstal ( do this and install again)
 * goto C:\Users\USER_NAME.platformio\platforms 
 * delete folder **wizio-pico** ( builders )
 * delete folder **framework-wizio-pico** ( sources )
-* delete folder toolchain-gccarmnoneeabi (compiler, _may not delete_ )
+* delete folder toolchain-gccarmnoneeabi (compiler, **may not delete** )
 
 ## Baremetal - New Project
 PlatformIO -> Home -> New
