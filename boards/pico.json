@@ -1,28 +1,33 @@
 {
   "name": "WizIO-PICO",
   "url": "https://github.com",
-  "build": {
-    "sdk": "pico",
-    "core": "pico",
-    "variant": "pico",    
-    "uploader": "pico-none",
-    "f_cpu": "133000000L",
-    "mcu": "RP2040"
-  },
-  "debug": {
-    "tools": {
-      "uart": {
-        "onboard": true,
-        "extra_cmds": [],
-        "load_cmd": [],
-        "server": {}
-      }
-    }
-  },  
+  "vendor": "WizIO",  
   "frameworks": ["baremetal", "arduino"],
-  "vendor": "WizIO",
+
+  "build": {
+    "sdk"       : "pico",
+    "core"      : "pico",
+    "variant"   : "pico",    
+    "f_cpu"     : "48000000L",
+    "f_cpu_max" : "273000000L",
+    "mcu"       : "RP2040"
+  },
+
+  "debug": {
+    "svd_path"       : "rp2040.svd",
+    "openocd_target" : "rp2040",
+    "default_tools"  : [ "picoprobe-OpenOCD" ],
+    "tools": {
+      "UF2-MSD":            { "onboard": true, "extra_cmds": [], "load_cmd": [], "server": {} },
+      "picoprobe-OpenOCD" : { "onboard": true, "extra_cmds": [], "load_cmd": [], "server": {} }
+    }
+    
+  },  
+
   "upload": {
-        "maximum_ram_size":  262144,
-        "maximum_size"    : 2097152
+    "maximum_ram_size" :  262144,
+    "maximum_size"     : 2097152, 
+    "protocol"         :   "UF2-MSD",
+    "protocols"        : [ "UF2-MSD" ]        
   }
 }
