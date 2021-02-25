@@ -1,7 +1,6 @@
-
 # WizIO 2021 Georgi Angelov
-# http://www.wizio.eu/
-# https://github.com/Wiz-IO
+#   http://www.wizio.eu/
+#   https://github.com/Wiz-IO/wizio-pico
 
 from __future__ import print_function
 from SCons.Script import DefaultEnvironment

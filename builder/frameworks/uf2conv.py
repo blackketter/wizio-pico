@@ -306,9 +306,10 @@ if __name__ == "__main__":
     main()
 
 
-# WizIO 2020 Georgi Angelov
+# WizIO 2021 Georgi Angelov
 #   http://www.wizio.eu/
-#   https://github.com/Wiz-IO
+#   https://github.com/Wiz-IO/wizio-pico
+
 def upload_app(file_name, drive, addr = '0x10000000'): 
     if drive == None: 
         print("\n[ERROR] Please select drive in platformio.ini: upload_port = ????:/")
