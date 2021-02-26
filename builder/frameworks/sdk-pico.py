@@ -24,10 +24,7 @@ def dev_init(env, platform):
     include_common(env)
     env.Append( 
         CPPDEFINES = [ platform.upper() ],
-        CPPPATH    = [ 
-            join("$PROJECT_DIR", "include"),
-            join(env.framework_dir, "pico-sdk", "src", "boards", "include"), 
-        ] 
+        CPPPATH    = [ join(env.framework_dir, "pico-sdk", "src", "boards", "include") ] 
     )   
 # LIBRARIES
     env.libs = libs = []     
