@@ -11,9 +11,9 @@ void vTaskCode(void *pvParameters)
     for (;;)
     {
         gpio_put(PICO_DEFAULT_LED_PIN, 1);
-        sleep_ms(1000);
+        vTaskDelay(1000);
         gpio_put(PICO_DEFAULT_LED_PIN, 0);
-        sleep_ms(1000);
+        vTaskDelay(1000);
         printf("Ticks  = %lu\n", xTaskGetTickCount());
         printf("Millis = %llu\n", div_u64u64(time_us_64(), 1000));
     }
