@@ -162,7 +162,7 @@ def add_freeRTOS(env):
     print ( join(env.framework_dir, "libs", "FreeRTOS", "include") )
     dir = join(env.framework_dir, "libs", "FreeRTOS")
     env.Append(
-        CPPDEFINES = [ "RTOS=FreeRTOS" ],         
+        CPPDEFINES = [ "FREERTOS" ],         
         CPPPATH = [  join(dir, "include"),  join(dir, "portable", 'GCC', 'ARM_CM0'), ] 
     )      
     env.libs.append(  env.BuildLibrary( 

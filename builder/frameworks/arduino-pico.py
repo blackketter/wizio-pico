@@ -55,6 +55,9 @@ def dev_init(env, platform):
     libs.append( env.BuildLibrary( join("$BUILD_DIR", "src", "_project"), join("$PROJECT_DIR", "lib") ) ) 
     add_boot(env)
     add_usb(env)
+# LIBS    
+    add_freeRTOS(env)    
+    
     env.Append(LIBS = libs)  
     set_bynary_type(env)
 
