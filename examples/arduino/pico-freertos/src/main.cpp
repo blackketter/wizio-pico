@@ -30,7 +30,7 @@ void vTask2(void *pvParameters)
 
 void setup()
 {
-  Serial.begin(115200, true);
+  Serial.begin(115200, true); // retarget printf()
   Serial.printf("\n\nArdiuno Raspberrypi PI Pico");
   printf(" 2021 Georgi Angelov\n");
 
