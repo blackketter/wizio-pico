@@ -51,6 +51,8 @@ def add_usb(env):
     env.Append(
         CPPDEFINES = [ "CFG_TUSB_MCU=OPT_MCU_RP2040" ],         
         CPPPATH = [
+            join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_fix", "rp2040_usb_device_enumeration", "include"),
+            join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_stdio_usb", "include"),
             join(env.framework_dir, "pico-sdk", "src", "rp2_common", "tinyusb"),
             join(tinyusb_dir, "src"),
             join(tinyusb_dir, "hw"),             
@@ -60,6 +62,14 @@ def add_usb(env):
         env.BuildLibrary( join("$BUILD_DIR", '_' + env.platform, "tinyusb"), 
         join(tinyusb_dir) )
     )
+    env.libs.append( 
+        env.BuildLibrary( join("$BUILD_DIR", '_' + env.platform, "pico_fix"), 
+        join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_fix") )
+    )    
+    env.libs.append( 
+        env.BuildLibrary( join("$BUILD_DIR", '_' + env.platform, "pico_stdio_usb"), 
+        join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_stdio_usb") )
+    )     
 
 def add_boot(env):
     boot = env.BoardConfig().get("build.boot", "w25q080") # get boot
@@ -145,6 +155,21 @@ def add_flags(env, optimization = '-Os', heap_size = "2048"):
         UPLOADCMD = dev_uploader                      
     )    
 
+def add_freeRTOS(env):
+    if ('0' == env.BoardConfig().get("build.use_freertos", "0")): 
+        return
+    print('  FreeRTOS: IN USE')
+    print ( join(env.framework_dir, "libs", "FreeRTOS", "include") )
+    dir = join(env.framework_dir, "libs", "FreeRTOS")
+    env.Append(
+        CPPDEFINES = [ "RTOS=FreeRTOS" ],         
+        CPPPATH = [  join(dir, "include"),  join(dir, "portable", 'GCC', 'ARM_CM0'), ] 
+    )      
+    env.libs.append(  env.BuildLibrary( 
+        join("$BUILD_DIR", '_' + env.platform, "FreeRTOS"), join(dir), 
+        src_filter=[ "+<*>", "-<portable/Common>", "-<portable/MemMang>", "+<portable/MemMang/heap_4.c>" ] 
+    ) )
+
 def set_bynary_type(env):
     env.address = env.BoardConfig().get("build.address", "-") # get uf2 start address
     linker = env.BoardConfig().get("build.linker", "-") # get linker srcipt
@@ -176,8 +201,11 @@ def set_bynary_type(env):
     print('  ADDRESS:', env.address)
 
 def include_common(env):
+    tinyusb_dir = join(env.framework_dir, "pico-sdk", "lib", "tinyusb")
     env.Append(      
         CPPPATH = [    
+            join("$PROJECT_DIR", "include"),
+
             join(env.framework_dir, "common"),         
             join(env.framework_dir, "pico-sdk", "src", "rp2040", "hardware_regs", "include"),  
             join(env.framework_dir, "pico-sdk", "src", "rp2040", "hardware_structs", "include"),
@@ -198,7 +226,6 @@ def include_common(env):
             join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_cxx_options", "include"),
             join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_divider", "include"),
             join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_double", "include"),
-            join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_fix", "include"),
             join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_float", "include"),
             join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_int64_ops", "include"),
             join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_malloc", "include"),
@@ -208,13 +235,15 @@ def include_common(env):
             join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_printf", "include"),
             join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_runtime", "include"),
             join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_standard_link", "include"),
+            join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_unique_id", "include"),  
+            join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_stdlib", "include"),                      
             join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_stdio", "include"),            
             join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_stdio_semihosting", "include"),
             join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_stdio_uart", "include"),
-            join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_stdio_usb", "include"),
-            join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_stdlib", "include"),
-            join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_unique_id", "include"),
-            join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_fix", "rp2040_usb_device_enumeration", "include"),
+
+            #join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_stdio_usb", "include"),
+            #join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_fix", "rp2040_usb_device_enumeration", "include"),
+            #join(env.framework_dir, "pico-sdk", "src", "rp2_common", "pico_fix", "include"),
 
             join(env.framework_dir, "pico-sdk", "src", "rp2_common", "hardware_adc", "include"),
             join(env.framework_dir, "pico-sdk", "src", "rp2_common", "hardware_base", "include"),
@@ -238,8 +267,6 @@ def include_common(env):
             join(env.framework_dir, "pico-sdk", "src", "rp2_common", "hardware_uart", "include"),
             join(env.framework_dir, "pico-sdk", "src", "rp2_common", "hardware_vreg", "include"),            
             join(env.framework_dir, "pico-sdk", "src", "rp2_common", "hardware_watchdog", "include"),
-            join(env.framework_dir, "pico-sdk", "src", "rp2_common", "hardware_xosc", "include"),
+            join(env.framework_dir, "pico-sdk", "src", "rp2_common", "hardware_xosc", "include"),              
         ],                       
     )    
-
-

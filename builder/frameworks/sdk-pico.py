@@ -24,7 +24,10 @@ def dev_init(env, platform):
     include_common(env)
     env.Append( 
         CPPDEFINES = [ platform.upper() ],
-        CPPPATH    = [ join(env.framework_dir, "pico-sdk", "src", "boards", "include"), ] 
+        CPPPATH    = [ 
+            join("$PROJECT_DIR", "include"),
+            join(env.framework_dir, "pico-sdk", "src", "boards", "include"), 
+        ] 
     )   
 # LIBRARIES
     env.libs = libs = []     
@@ -34,6 +37,8 @@ def dev_init(env, platform):
         src_filter=[ "+<*>", 
             "-<boot_stage2>", 
             "-<pico_standard_link/crt0.S>"
+            "-<pico_stdio_usb>",
+            "-<pico_fix>",
         ]
     )) 
 # PROJECT-LIB    
@@ -42,5 +47,8 @@ def dev_init(env, platform):
     libs.append( env.BuildLibrary( join("$BUILD_DIR", '_' + platform, "common", "pico"), join(env.framework_dir, "common", "pico") ) )  
     add_boot(env)
     add_usb(env)
+# LIBS    
+    add_freeRTOS(env)
+
     env.Append(LIBS = libs)  
     set_bynary_type(env)
