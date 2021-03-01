@@ -16,6 +16,12 @@
 * [Framework code](https://github.com/Wiz-IO/framework-wizio-pico)
 * [Baremetal Examples](https://github.com/Wiz-IO/wizio-pico/tree/main/examples/baremetal)
 * [Arduino Examples](https://github.com/Wiz-IO/wizio-pico/tree/main/examples/arduino)
+* Added some libraries as:
+* * TinyUSB ( as library )
+* * FreeRTOS
+* * FatFS and LFS
+* * jsmn
+* * and other... ?
 * _Note: I am in Home-Office, it's hard for me to test any hardware_
 
 ![pico](https://raw.githubusercontent.com/Wiz-IO/LIB/master/pico/pio-pico.jpg)
