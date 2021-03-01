@@ -8,11 +8,11 @@
 * Frameworks:
 * * Baremetal ( pico-sdk as is ) 
 * * Arduino ( basic ... in progress )
-* [**READ WIKI**](https://github.com/Wiz-IO/wizio-pico/wiki/)
 * **Systems**
 * * windows, windows_x8, windows_amd64
 * * linux_x86_64, linux_armv6l, linux_armv7l, linux_armv8l
 * * darwin_x86_64, darwin_i386
+* [**READ WIKI**](https://github.com/Wiz-IO/wizio-pico/wiki/) 
 * [Framework code](https://github.com/Wiz-IO/framework-wizio-pico)
 * [Baremetal Examples](https://github.com/Wiz-IO/wizio-pico/tree/main/examples/baremetal)
 * [Arduino Examples](https://github.com/Wiz-IO/wizio-pico/tree/main/examples/arduino)
