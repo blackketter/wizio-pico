@@ -4,9 +4,9 @@
 * **Before experimental please [Reinstall](https://github.com/Wiz-IO/wizio-pico/blob/main/README.md#fast-uninstal--reinstal--do-this-and-install-again) the platform**
 * **Version: 1.0.1** The project is a work in progress and is **very beta version** - there may be bugs...
 * This project not an official platform and is based on [**pico-sdk**](https://github.com/raspberrypi/pico-sdk)
-* **pico-sdk** as is, **but** the file organization has been restructured to be flexible and have a fast compilation ( soon... )
+* **pico-sdk as is, but the file organization has been restructured to be flexible and have a fast compilation**
 * Frameworks:
-* * Baremetal ( pico-sdk as is ) 
+* * Baremetal 
 * * Arduino ( basic ... in progress )
 * **Systems**
 * * windows, windows_x8, windows_amd64
@@ -16,8 +16,8 @@
 * [Framework code](https://github.com/Wiz-IO/framework-wizio-pico)
 * [Baremetal Examples](https://github.com/Wiz-IO/wizio-pico/tree/main/examples/baremetal)
 * [Arduino Examples](https://github.com/Wiz-IO/wizio-pico/tree/main/examples/arduino)
-* Added some libraries as: ( soon... )
-* * TinyUSB ( as library )
+* Added some libraries as: 
+* * TinyUSB 
 * * FreeRTOS
 * * FatFS and LFS
 * * jsmn
@@ -57,14 +57,13 @@ PlatformIO -> Home -> New
 * BUILD / UPLOAD
 * [READ WIKI - ARDUINO](https://github.com/Wiz-IO/wizio-pico/wiki/ARDUINO)
 
-
 ## TODO 
 * **Arduino**
 * * Libraries ... etc
 * **PIOASM**
+* I need precompiled executables for PIO-ASM for Windows, Linux, macOS, RP4...
 
 ## Thanks to
-
 * [Ivan Kravets ( PlatformIO )](https://platformio.org/)
 * [Comet Electronics](https://www.comet.bg/en/)
 
