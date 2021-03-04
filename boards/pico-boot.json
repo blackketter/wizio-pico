@@ -2,7 +2,6 @@
   "name": "WizIO-PICO Boot Stage 2 Helper",
   "url": "https://github.com",
   "build": {
-    "sdk": "pico",
     "core": "pico",
     "variant": "pico",    
     "uploader": "pico-none",

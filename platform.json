@@ -1,7 +1,7 @@
 {
   "name": "wizio-pico",
   "title": "WizIO - Raspberry Pi Pico",
-  "description": "Development platform 2021 Georgi Angelov",
+  "description": "Development platform for Raspberry Pi Pico 2021 Georgi Angelov",
   "homepage": "http://www.wizio.eu/",
   "license": "Apache-2.0",
   "engines": {
@@ -11,7 +11,7 @@
     "type": "git",
     "url": "https://github.com/Wiz-IO/wizio-pico.git"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "packageRepositories": [
     "http://dl.platformio.org/packages/manifest.json"
   ],

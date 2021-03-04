@@ -2,7 +2,7 @@
 
 **A few words in the beginning**
 * **Before experimental please [Reinstall](https://github.com/Wiz-IO/wizio-pico/blob/main/README.md#fast-uninstal--reinstal--do-this-and-install-again) the platform**
-* **Version: 1.0.0** The project is a work in progress and is **very beta version** - there may be bugs...
+* **Version: 1.0.1** The project is a work in progress and is **very beta version** - there may be bugs...
 * This project not an official platform and is based on [**pico-sdk**](https://github.com/raspberrypi/pico-sdk)
 * **pico-sdk** as is, **but** the file organization has been restructured to be flexible and have a fast compilation ( soon... )
 * Frameworks:
