@@ -1,24 +1,35 @@
 #include <Arduino.h>
-#include "FreeRTOS.h"
-#include "task.h"
+
+int printTime()
+{
+  time_t rawtime;
+  struct tm *timeinfo;
+  time(&rawtime);
+  timeinfo = localtime(&rawtime);
+  printf("The current date/time is: %s", asctime(timeinfo));
+  return 0;
+}
+
+#if 1
+#include <FreeRTOS.h>
+#include <task.h>
 
 void vTask1(void *pvParameters)
 {
-  Serial.println("Task1");
+  Serial.println("\nTask1");
   printf("TASK 1\n");
   while (1)
   {
-    Serial.printf("Millis = %u\n", millis());
-    printf("TICKS  = %lu\n", xTaskGetTickCount());
-    delay(4000);
+    printTime();
+    delay(5000);
   }
 }
 
 void vTask2(void *pvParameters)
 {
-  Serial.println("Task2");
+  Serial.println("\nTask2");
   printf("TASK 2\n");
-  pinMode(LED, OUTPUT);
+  pinMode(PICO_DEFAULT_LED_PIN, OUTPUT);
   while (1)
   {
     static int led = 0;
@@ -28,19 +39,18 @@ void vTask2(void *pvParameters)
   }
 }
 
-void setup()
+void setup() // called from MainTask ( Arduino hidden task )
 {
   Serial.begin(115200, true); // retarget printf()
   Serial.printf("\n\nArdiuno Raspberrypi PI Pico");
   printf(" 2021 Georgi Angelov\n");
-
   xTaskCreate(
       vTask1,  /* Function that implements the task. */
       "Task1", /* Text name for the task. */
       512,     /* Stack size in words, not bytes. */
       NULL,    /* Parameter passed into the task. */
       1,       /* Priority at which the task is created. */
-      0);
+      NULL);
 
   xTaskCreate(
       vTask2,   /* Function that implements the task. */
@@ -48,9 +58,32 @@ void setup()
       512,      /* Stack size in words, not bytes. */
       NULL,     /* Parameter passed into the task. */
       1,        /* Priority at which the task is created. */
-      0);
-
-  vTaskStartScheduler();
+      NULL);
 }
 
-void loop() {}
+void loop() // called from MainTask ( Arduino hidden task )
+{
+  printf("millis = %d, %d\n", millis(), micros());
+  delay(1000);
+}
+
+#else
+
+void setup()
+{
+  Serial.begin(115200, true); // retarget printf()
+  Serial.printf("\n\nArdiuno Raspberrypi PI Pico");
+  printf(" 2021 Georgi Angelov\n");
+  pinMode(LED, OUTPUT);
+}
+
+void loop()
+{
+  printTime();
+  delay(5000);
+  static int led = 0;
+  digitalWrite(LED, led);
+  led ^= 1;
+}
+
+#endif
