@@ -22,7 +22,7 @@
 * * FatFS and LFS
 * * jsmn
 * * and other... ?
-* Added PIO-ASM
+* Added [PIO-ASM](https://github.com/Wiz-IO/wizio-pico/wiki/PIO-ASM)
 * * Windows
 * * linux_x86_64
 * 
@@ -64,8 +64,6 @@ PlatformIO -> Home -> New
 ## TODO 
 * **Arduino**
 * * Libraries ... etc
-* **PIOASM**
-* I need precompiled executables for PIO-ASM for Windows, Linux, macOS, RP4...
 
 ## Thanks to
 * [Ivan Kravets ( PlatformIO )](https://platformio.org/)
