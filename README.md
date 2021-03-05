@@ -64,8 +64,6 @@ PlatformIO -> Home -> New
 ## TODO 
 * **Arduino**
 * * Libraries ... etc
-* **PIOASM**
-* I need precompiled executables for PIO-ASM for Windows, Linux, macOS, RP4...
 
 ## Thanks to
 * [Ivan Kravets ( PlatformIO )](https://platformio.org/)
