@@ -11,6 +11,10 @@ from SCons.Script import (AlwaysBuild, Builder, COMMAND_LINE_TARGETS, Default, D
 from colorama import Fore
 
 env = DefaultEnvironment()
+env.Replace(
+    CXX="arm-none-eabi-g++",
+)
+
 print( '<<<<<<<<<<<< ' + env.BoardConfig().get("name").upper() + " 2021 Georgi Angelov >>>>>>>>>>>>" )
 
 elf = env.BuildProgram()
