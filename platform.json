@@ -41,8 +41,7 @@
     },      
     "tool-wizio-pico": {
         "type": "toolchain",
-        "version": "https://github.com/Wiz-IO/tool-wizio-pico.git",
-        "optional": true
+        "version": "https://github.com/Wiz-IO/tool-wizio-pico.git"
     }      
 
   }
