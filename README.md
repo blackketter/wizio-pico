@@ -22,7 +22,7 @@
 * * FatFS and LFS
 * * jsmn
 * * and other... ?
-* Added PIO-ASM
+* Added [PIO-ASM](https://github.com/Wiz-IO/wizio-pico/wiki/PIO-ASM)
 * * Windows
 * * linux_x86_64
 * 
