@@ -9,6 +9,7 @@ from __future__ import print_function
 from os.path import join
 from SCons.Script import (AlwaysBuild, Builder, COMMAND_LINE_TARGETS, Default, DefaultEnvironment)
 from colorama import Fore
+from pioasm import dev_pioasm
 
 env = DefaultEnvironment()
 env.Replace(
@@ -17,8 +18,9 @@ env.Replace(
 
 print( '<<<<<<<<<<<< ' + env.BoardConfig().get("name").upper() + " 2021 Georgi Angelov >>>>>>>>>>>>" )
 
-elf = env.BuildProgram()
+dev_pioasm(env)
 
+elf = env.BuildProgram()
 src = env.ElfToBin( join("$BUILD_DIR", "${PROGNAME}"), elf )
 prg = env.Alias( "buildprog", src, [ env.VerboseAction("", "DONE") ] )
 AlwaysBuild( prg )
